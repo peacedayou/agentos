@@ -1,0 +1,15 @@
+{
+  "_aide": "provider: anthropic | openai | ollama | mock. approval: auto | dangereux | tout",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "api_key": null,
+  "max_tokens": 8000,
+  "max_steps": 60,
+  "workspace": "espace_de_travail",
+  "approval": "dangereux",
+  "allow_outside_workspace": false,
+  "memory_file": "donnees/memoire.jsonl",
+  "reports_dir": "rapports",
+  "missions_dir": "missions",
+  "poll_seconds": 10
+}

@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+rapports/
+donnees/
+espace_de_travail/*
+!espace_de_travail/.gitkeep
+missions/*
+!missions/a_faire/
+missions/a_faire/*
+!missions/a_faire/.gitkeep
+config.local.json
+.env

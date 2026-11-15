@@ -1,0 +1,6 @@
+[
+  {"nom": "veille-matin", "toutes_les_minutes": 1440, "a_partir_de": "08:00", "actif": true,
+   "mission": "Lis https://news.ycombinator.com et écris veille/AAAA-MM-JJ.md (date du jour) avec les 10 sujets les plus importants et leurs liens."},
+  {"nom": "rangement-telechargements", "toutes_les_minutes": 10080, "actif": false,
+   "mission": "Range les fichiers du dossier a_trier/ dans des sous-dossiers par type (images, documents, archives, autres). Ne supprime rien."}
+]

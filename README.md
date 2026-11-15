@@ -1,6 +1,6 @@
-# AgentOS
+# AgentOS : système d'agent IA autonome
 
-[![CI](https://github.com/peacedayou/agentos/actions/workflows/ci.yml/badge.svg)](https://github.com/peacedayou/agentos/actions/workflows/ci.yml) : système d'agent IA autonome
+[![CI](https://github.com/peacedayou/agentos/actions/workflows/ci.yml/badge.svg)](https://github.com/peacedayou/agentos/actions/workflows/ci.yml)
 
 Tu donnes une **mission précise**. AgentOS la réalise **de A à Z**, comme Claude en mode agent :
 

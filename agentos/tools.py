@@ -64,7 +64,11 @@ class Toolbox:
         # realpath : un lien symbolique placé dans l'espace de travail ne permet pas d'en sortir.
         full = os.path.realpath(os.path.join(self.workspace, os.path.expanduser(p)))
         racine = os.path.realpath(self.workspace)
-        if not self.allow_outside and os.path.commonpath([full, racine]) != racine:
+        try:
+            dedans = os.path.commonpath([full, racine]) == racine
+        except ValueError:  # Windows : autre lecteur que l'espace de travail
+            dedans = False
+        if not self.allow_outside and not dedans:
             raise PermissionError(f"Accès refusé hors de l'espace de travail : {p}")
         return full
 

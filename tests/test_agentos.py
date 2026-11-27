@@ -1,3 +1,4 @@
+import os
 """Tests sans réseau : garde-fous de sécurité, conversion des messages et mode démo."""
 import subprocess
 import sys
@@ -27,6 +28,13 @@ class GardeFous(unittest.TestCase):
 
     def test_sortie_de_l_espace_de_travail_refusee(self):
         out, err = self.tb.call("read_file", {"path": "../../etc/passwd"})
+        self.assertTrue(err)
+        self.assertIn("refusé", out.lower())
+
+    def test_lien_symbolique_vers_l_exterieur_refuse(self):
+        lien = Path(self.tmp.name) / "fuite"
+        os.symlink("/etc", lien)
+        out, err = self.tb.call("read_file", {"path": "fuite/hostname"})
         self.assertTrue(err)
         self.assertIn("refusé", out.lower())
 

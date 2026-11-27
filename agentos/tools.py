@@ -61,8 +61,10 @@ class Toolbox:
 
     # ------------------------------------------------------------------ utils
     def _path(self, p):
-        full = os.path.abspath(os.path.join(self.workspace, os.path.expanduser(p)))
-        if not self.allow_outside and os.path.commonpath([full, self.workspace]) != self.workspace:
+        # realpath : un lien symbolique placé dans l'espace de travail ne permet pas d'en sortir.
+        full = os.path.realpath(os.path.join(self.workspace, os.path.expanduser(p)))
+        racine = os.path.realpath(self.workspace)
+        if not self.allow_outside and os.path.commonpath([full, racine]) != racine:
             raise PermissionError(f"Accès refusé hors de l'espace de travail : {p}")
         return full
 
@@ -99,6 +101,9 @@ class Toolbox:
         if not self._approve(f"commande « {command} »", dangerous):
             return "REFUSÉ : commande non autorisée (jugée risquée). Trouve une autre approche."
         try:
+            # shell=True est voulu : l'agent exécute des commandes shell complètes. La garde est
+            # _approve() (motifs DANGEROUS + confirmation) ; le mode « auto » la désactive : à réserver
+            # à un bac à sable jetable.
             r = subprocess.run(command, shell=True, cwd=self.workspace, capture_output=True,
                                text=True, timeout=timeout, encoding="utf-8", errors="replace")
             out = (r.stdout or "") + (("\n[stderr]\n" + r.stderr) if r.stderr else "")
